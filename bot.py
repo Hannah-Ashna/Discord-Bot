@@ -6,6 +6,7 @@ import nest_asyncio
 nest_asyncio.apply()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
+bot = discord.Client()
 
 @bot.event
 async def on_message(message):
@@ -126,5 +127,5 @@ async def on_message(message):
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     
-bot = discord.Client()
+
 bot.run(TOKEN)

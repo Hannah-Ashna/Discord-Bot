@@ -26,3 +26,6 @@ Removes a task from the list based on its number in the list.
 **Easter Egg**  
 Created for those days where we'd sleep in instead of waking up early.
 - Syntax: afternoon
+
+### Notes:
+You'll need to manually create temporary task lists for each user on the discord server in the 'Users' folder. It is definitely a less than ideal process, however, it appears when the bot runs on heroku without any existing files in that folder none of the commands work. Going to look into resolving this issue at some point.

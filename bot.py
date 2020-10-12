@@ -32,7 +32,7 @@ async def on_message(message):
         await message.channel.send("Damn ... took you long enough")
 
     # Provide list of commands
-    if (message.content.startswith(".help"):
+    if (message.content.startswith(".help")):
         await message.channel.send("Make a to-do list: .SetTask, Task1, Task2, ...\nAdd to-do list items: .AddTask, Task1, Task2, ...\nRemove to-do list items: .DeleteTask, TaskNum, TaskNum, ...\n")
         
     # Let the user set their task

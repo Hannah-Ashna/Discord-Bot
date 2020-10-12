@@ -12,7 +12,7 @@ async def on_message(message):
         return
 
     # Greet the user and show them their tasks for the day
-    if (message.content.startswith('Morning') or message.content.startswith("morning") or message.content.startswith("mrnin") 
+    if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
         or message.content.startswith("mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
         await message.channel.send("Hello Human ;)")
         try:
@@ -30,6 +30,10 @@ async def on_message(message):
     # Call them out for sleeping too much! 
     elif (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough")
+
+    # Provide list of commands
+    if (message.content.startswith(".help"):
+        await message.channel.send("Make a to-do list: .SetTask, Task1, Task2, ...\nAdd to-do list items: .AddTask, Task1, Task2, ...\nRemove to-do list items: .DeleteTask, TaskNum, TaskNum, ...\n")
         
     # Let the user set their task
     if (message.content.startswith(".SetTask")):

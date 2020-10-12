@@ -10,7 +10,7 @@ bot = discord.Client()
 
 @bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     # Greet the user and show them their tasks for the day

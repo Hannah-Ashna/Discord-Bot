@@ -120,10 +120,17 @@ async def on_message(message):
             print("Couldn't Remove Item")
             await message.channel.send("Well .. that didn't work as planned")
             
-            
+# Prevent Heroku from knocking this bot out
+# Thanks @petelampy for the help with the Heroku setup ;)
+async def stay_awake():
+    await bot.wait_until_ready()
+    while not bot.is_closed():
+        print('Still running... ')
+        await asyncio.sleep(1680)
+        
 @bot.event
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     
-
+bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

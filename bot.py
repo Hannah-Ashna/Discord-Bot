@@ -1,9 +1,7 @@
 # Work with Python 3.6
 import discord
 import os
-import nest_asyncio
-
-nest_asyncio.apply()
+import asyncio
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = discord.Client()

@@ -6,9 +6,8 @@ import nest_asyncio
 nest_asyncio.apply()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
-client = discord.Client()
 
-@client.event
+@bot.event
 async def on_message(message):
     if message.author == client.user:
         return
@@ -123,9 +122,9 @@ async def on_message(message):
             await message.channel.send("Well .. that didn't work as planned")
             
             
-@client.event
+@bot.event
 async def on_ready():
-    print('Logged in as: ',client.user.name)
-
-
-client.run(TOKEN)
+    print('Logged in as: ',bot.user.name)
+    
+bot = discord.Client()
+bot.run(TOKEN)

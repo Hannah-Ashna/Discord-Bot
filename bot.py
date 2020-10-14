@@ -114,9 +114,15 @@ async def on_message(message):
                 print (Item)
                 lines = TasksFile.readlines()
                 TasksFile.seek(0)
+                lastIndex = 0
                 for line in lines:
                     if Item not in line:
+                        # if the item index-1 is above previous index's, subtract 1 from index
+                        # only does it on the final item to avoid overwriting items before everything's deleted
+                        if int(line[1])-1 > int(lastIndex) and i == len(msg) - 1:
+                            line = '[' + str(lastIndex + 1) + line[2:len(line)]
                         TasksFile.write(line)
+                        lastIndex = int(line[1])
                 TasksFile.truncate()
                 TasksFile.close()
             

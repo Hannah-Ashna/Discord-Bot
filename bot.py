@@ -18,15 +18,11 @@ async def on_message(message):
         try:
             UserName = (str(message.author)).split("#")
             FileName = "Users/" + UserName[1] + '.txt'
-            TasksOutput = "**Pending Tasks:**\n"
             TasksFile = open(FileName,"r")
+            OutputText = discord.Embed(title = "Pending Tasks:")
             for line in TasksFile:
-                TasksOutput = TasksOutput + line
+                OutputText.add_field(name = "", value = line, inline = False)
             TasksFile.close()
-
-            # Output formatting
-            OutputText = discord.Embed(Title = "Pending Tasks:")
-            OutputText.add_field(name = "", value = TasksOutput, inline = False)
             await message.channel.send(embed = OutputText)
         except:
             print("Couldn't read from Tasks.txt")
@@ -37,7 +33,7 @@ async def on_message(message):
 
     # Provide list of commands
     if (message.content.startswith(".help")):
-        helpuser = discord.Embed(Title = "Commands List:")
+        helpuser = discord.Embed(title = "Commands List:")
         helpuser.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
         helpuser.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
         helpuser.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
@@ -138,17 +134,9 @@ async def on_message(message):
             print("Couldn't Remove Item")
             await message.channel.send("Well .. that didn't work as planned")
             
-# Prevent Heroku from knocking this bot out
-# Thanks @petelampy for the help with the Heroku setup ;)
-async def stay_awake():
-    await bot.wait_until_ready()
-    while not bot.is_closed():
-        print('Still running... ')
-        await asyncio.sleep(1680)
         
 @bot.event
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     
-bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

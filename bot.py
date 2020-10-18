@@ -25,7 +25,7 @@ async def on_message(message):
             TasksFile.close()
 
             # Output formatting
-            OutputText = discord.Embed(Title = "Pending Tasks:", color = 0xFF990000)
+            OutputText = discord.Embed(Title = "Pending Tasks:")
             OutputText.add_field(name = "", value = TasksOutput, inline = False)
             await message.channel.send(embed = OutputText)
         except:
@@ -37,7 +37,7 @@ async def on_message(message):
 
     # Provide list of commands
     if (message.content.startswith(".help")):
-        helpuser = discord.Embed(Title = "Commands List:", color = 0xFF990000)
+        helpuser = discord.Embed(Title = "Commands List:")
         helpuser.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
         helpuser.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
         helpuser.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)

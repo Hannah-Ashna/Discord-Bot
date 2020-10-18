@@ -25,9 +25,9 @@ async def on_message(message):
             TasksFile.close()
 
             # Output formatting
-            TaskText = discord.Embed(Title = "Pending Tasks:", color = 0xFF990000)
-            TaskText.add_field(name = "", value = TasksOutput, inline = False)
-            await message.channel.send(embed = TaskText)
+            OutputText = discord.Embed(Title = "Pending Tasks:", color = 0xFF990000)
+            OutputText.add_field(name = "", value = TasksOutput, inline = False)
+            await message.channel.send(embed = OutputText)
         except:
             print("Couldn't read from Tasks.txt")
         
@@ -37,11 +37,11 @@ async def on_message(message):
 
     # Provide list of commands
     if (message.content.startswith(".help")):
-        helpcommand = discord.Embed(Title = "Commands List:", color = 0xFF990000)
-        helpcommand.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
-        helpcommand.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
-        helpcommand.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
-        await message.channel.send(embed = helpcommand)
+        helpuser = discord.Embed(Title = "Commands List:", color = 0xFF990000)
+        helpuser.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
+        helpuser.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
+        helpuser.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
+        await message.channel.send(embed = helpuser)
         
     # Let the user set their task
     if (message.content.startswith(".SetTask")):

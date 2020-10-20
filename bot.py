@@ -13,7 +13,7 @@ async def on_message(message):
 
     # Greet the user and show them their tasks for the day
     if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
-        or message.content.startswith("mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
+        or message.content.startswith("mornin") or message.content.startswith("Mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
         await message.channel.send("Hello Human ;)")
         try:
             UserName = (str(message.author)).split("#")
@@ -144,10 +144,12 @@ async def on_message(message):
         await message.channel.send("Retrieving list ...")
         try:
             FileName = "BandNames.txt"
+            Content = ""
             File = open(FileName,"r")
             bands = discord.Embed(title = "Band Names:")
             for line in File:
-                bands.add_field(name = "----------", value = line, inline = False)
+                Content += line 
+            bands.set_footer(text = Content)
 
             File.close()
             await message.channel.send(embed = bands)
@@ -162,14 +164,13 @@ async def on_message(message):
         
         try:
             FileName = "BandNames.txt"
-            
-            # Open the file again, this time to append
+            # Open the file to append
             File = open(FileName, "a+")
             msg = message.content
             BandName = msg.split(', ')
             for i in range (1, len(BandName)):
                 # Use count to add the correct numbers to the tasks
-                TasksFile.write(BandName[i] + " \n")
+                File.write(BandName[i] + " \n")
             File.close()
             # Inform the user of the success
             await message.channel.send("Success!")

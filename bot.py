@@ -25,7 +25,7 @@ async def on_message(message):
                 Data = line.split(" - ")
                 FieldName = "Task " + Data[0]
                 taskList.add_field(name = FieldName, value = Data[1], inline = False)
-            FileName.close()
+            TasksFile.close()
 
             await message.channel.send(embed = taskList)
             
@@ -162,11 +162,6 @@ async def on_message(message):
         
         try:
             FileName = "BandNames.txt"
-
-            # Open the file to read first to get the number of lines
-            File = open(FileName, "r")
-            count = len(File.readlines()) + 1
-            File.close()
             
             # Open the file again, this time to append
             File = open(FileName, "a+")
@@ -175,8 +170,7 @@ async def on_message(message):
             for i in range (1, len(BandName)):
                 # Use count to add the correct numbers to the tasks
                 TasksFile.write(BandName[i] + " \n")
-                count = count + 1
-            TasksFile.close()
+            File.close()
             # Inform the user of the success
             await message.channel.send("Success!")
 

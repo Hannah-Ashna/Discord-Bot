@@ -138,13 +138,13 @@ async def on_message(message):
 
     # Let the user view the bands list   
     if (message.content.startswith(".Bands")):
-        await message.channel.send("Adding that task ...")
+        await message.channel.send("Retrieving list ...")
         try:
             FileName = "BandNames.txt"
             File = open(FileName,"r")
             bands = discord.Embed(title = "Band Names:")
             for line in File:
-                bands.add_field(name = "", value = line, inline = False)
+                bands.add_field(name = "Name", value = line, inline = False)
             await message.channel.send(embed = bands)
 
         except:

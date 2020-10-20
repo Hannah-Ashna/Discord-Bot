@@ -142,10 +142,9 @@ async def on_message(message):
         try:
             FileName = "BandNames.txt"
             File = open(FileName,"r")
-            FileOutput = File.read()
-
             bands = discord.Embed(title = "Band Names:")
-            bands.add_field(name = "", value = FileOutput, inline = False)
+            for line in File:
+                bands.add_field(name = "", value = line, inline = False)
             await message.channel.send(embed = bands)
 
         except:

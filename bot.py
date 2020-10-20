@@ -30,9 +30,9 @@ async def on_message(message):
         
     # Call them out for sleeping too much! 
     elif (message.content.startswith("afternoon")):
-        await message.channel.send("Damn ... took you long enough")
+        await message.channel.send("Damn ... took you long enough... time to look at your tasks!")
 
-    # Provide list of commands
+    # Provide list of commands using .help
     if (message.content.startswith(".help")):
         helpcommand = discord.Embed(title = "Commands List:")
         helpcommand.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
@@ -135,17 +135,25 @@ async def on_message(message):
             print("Couldn't Remove Item")
             await message.channel.send("Well .. that didn't work as planned")
             
-# Prevent Heroku from knocking this bot out
-# Thanks @petelampy for the help with the Heroku setup ;)
-async def stay_awake():
-    await bot.wait_until_ready()
-    while not bot.is_closed():
-        print('Still running... ')
-        await asyncio.sleep(1680)
-        
-@bot.event
+
+    # Let the user view the bands list   
+    if (message.content.startswith(".Bands")):
+        await message.channel.send("Adding that task ...")
+        try:
+            FileName = "BandNames.txt"
+            File = open(FileName,"r")
+            FileOutput = File.read()
+
+            bands = discord.Embed(title = "Band Names:")
+            bands.add_field(name = "", value = FileOutput, inline = False)
+            await message.channel.send(embed = bands)
+
+        except:
+            print("Couldn't get band list")
+            await message.channel.send("That's weird ... the band list is unavailable?")
+
+
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     
-bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

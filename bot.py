@@ -22,7 +22,9 @@ async def on_message(message):
 
             taskList = discord.Embed(title = "Pending Tasks:")
             for line in TasksFile:
-                taskList.add_field(name = " ", value = line, inline = False)
+                Data = line.split(" - ")
+                FieldName = "Task " + Data[0]
+                taskList.add_field(name = FieldName, value = Data[1], inline = False)
             await message.channel.send(embed = taskList)
             
         except:
@@ -144,7 +146,7 @@ async def on_message(message):
             File = open(FileName,"r")
             bands = discord.Embed(title = "Band Names:")
             for line in File:
-                bands.add_field(name = " ", value = line, inline = False)
+                bands.add_field(name = "----------", value = line, inline = False)
             await message.channel.send(embed = bands)
 
         except:

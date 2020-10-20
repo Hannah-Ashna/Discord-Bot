@@ -18,12 +18,12 @@ async def on_message(message):
         try:
             UserName = (str(message.author)).split("#")
             FileName = "Users/" + UserName[1] + '.txt'
-            TasksOutput = "**Pending Tasks:**\n"
             TasksFile = open(FileName,"r")
+
+            taskList = discord.Embed(title = "Pending Tasks:")
             for line in TasksFile:
-                TasksOutput = TasksOutput + line
-            await message.channel.send(TasksOutput)
-            TasksFile.close()
+                taskList.add_field(name = " ", value = line, inline = False)
+            await message.channel.send(embed = taskList)
             
         except:
             print("Couldn't read from Tasks.txt")
@@ -34,11 +34,11 @@ async def on_message(message):
 
     # Provide list of commands using .help
     if (message.content.startswith(".help")):
-        helpcommand = discord.Embed(title = "Commands List:")
-        helpcommand.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
-        helpcommand.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
-        helpcommand.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
-        await message.channel.send(embed = helpcommand)
+        helpCommand = discord.Embed(title = "Commands List:")
+        helpCommand.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
+        await message.channel.send(embed = helpCommand)
         
     # Let the user set their task
     if (message.content.startswith(".SetTask")):
@@ -144,11 +144,11 @@ async def on_message(message):
             File = open(FileName,"r")
             bands = discord.Embed(title = "Band Names:")
             for line in File:
-                bands.set_footer(text = line)
+                bands.add_field(name = " ", value = line, inline = False)
             await message.channel.send(embed = bands)
 
         except:
-            print("Couldn't get the band list")
+            print("Couldn't get band list")
             await message.channel.send("That's weird ... the band list is unavailable?")
 
 

@@ -144,11 +144,11 @@ async def on_message(message):
             File = open(FileName,"r")
             bands = discord.Embed(title = "Band Names:")
             for line in File:
-                bands.add_field(name = "Name", value = line, inline = False)
+                bands.set_footer(text = line)
             await message.channel.send(embed = bands)
 
         except:
-            print("Couldn't get band list")
+            print("Couldn't get the band list")
             await message.channel.send("That's weird ... the band list is unavailable?")
 
 

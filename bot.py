@@ -25,21 +25,25 @@ async def on_message(message):
                 Data = line.split(" - ")
                 FieldName = "Task " + Data[0]
                 taskList.add_field(name = FieldName, value = Data[1], inline = False)
+            FileName.close()
+
             await message.channel.send(embed = taskList)
             
         except:
             print("Couldn't read from Tasks.txt")
         
     # Call them out for sleeping too much! 
-    elif (message.content.startswith("afternoon")):
+    if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough... time to look at your tasks!")
 
     # Provide list of commands using .help
     if (message.content.startswith(".help")):
         helpCommand = discord.Embed(title = "Commands List:")
-        helpCommand.add_field(name = ".SetTask", value = "Make a to-do list using **.SetTask, Task1, Task2, ...", inline = False)
-        helpCommand.add_field(name = ".AddTask", value = "Add items to the to-do list **.AddTask, Task1, Task2, ...", inline = False)
-        helpCommand.add_field(name = ".DeleteTask", value = "Remove items from the to-do list **.DeleteTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".SetTask", value = "Make a to-do list using \n.SetTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".AddTask", value = "Add items to the to-do list \n.AddTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".DeleteTask", value = "Remove items from the to-do list \n.DeleteTask, Task1, Task2, ...", inline = False)
+        helpCommand.add_field(name = ".Bands", value = "This displays the band names list", inline = False)
+        helpCommand.add_field(name = ".AddBand", value = "Add a band name to the list \n.AddBand, Task1, Task2, ...", inline = False)
         await message.channel.send(embed = helpCommand)
         
     # Let the user set their task
@@ -99,8 +103,6 @@ async def on_message(message):
         except:
             print("Couldn't Set Tasks")
             await message.channel.send("Well .. that didn't work as planned")
-            
-
 
     # Let the user remove a task from their list  
     if (message.content.startswith(".DeleteTask")):
@@ -137,7 +139,6 @@ async def on_message(message):
             print("Couldn't Remove Item")
             await message.channel.send("Well .. that didn't work as planned")
             
-
     # Let the user view the bands list   
     if (message.content.startswith(".Bands")):
         await message.channel.send("Retrieving list ...")
@@ -147,12 +148,42 @@ async def on_message(message):
             bands = discord.Embed(title = "Band Names:")
             for line in File:
                 bands.add_field(name = "----------", value = line, inline = False)
+
+            File.close()
             await message.channel.send(embed = bands)
 
         except:
             print("Couldn't get band list")
             await message.channel.send("That's weird ... the band list is unavailable?")
 
+    # Let the user add to the bands list
+    if (message.content.startswith(".AddBand")):
+        await message.channel.send("Adding that name ...")
+        
+        try:
+            FileName = "BandNames.txt"
+
+            # Open the file to read first to get the number of lines
+            File = open(FileName, "r")
+            count = len(File.readlines()) + 1
+            File.close()
+            
+            # Open the file again, this time to append
+            File = open(FileName, "a+")
+            msg = message.content
+            BandName = msg.split(', ')
+            for i in range (1, len(BandName)):
+                # Use count to add the correct numbers to the tasks
+                TasksFile.write(BandName[i] + " \n")
+                count = count + 1
+            TasksFile.close()
+            # Inform the user of the success
+            await message.channel.send("Success!")
+
+        # If there's an error let the user know
+        except:
+            print("Couldn't add band name")
+            await message.channel.send("Well .. that didn't work as planned")
 
 async def on_ready():
     print('Logged in as: ',bot.user.name)

@@ -5,6 +5,8 @@ The bot allows users to add tasks and remove tasks and completely re-do their cu
 
 The bot is currently being hosted via an **AWS EC2 Instance** instead of on **Heroku**
 
+------------------------------------
+
 ### Commands List:
 **Commands Help**  
 Provides user with a list of tasks that the bot is able to do  
@@ -34,6 +36,8 @@ Syntax: `.AddBand, Name1, Name2, ..., NameN`
 **Easter Egg**  
 Created for those days where we'd sleep in instead of waking up early.  
 Syntax: `afternoon`
+
+-------------------------------
 
 ### Creator's Notes:
 #### Using Heroku: 

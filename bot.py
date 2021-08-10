@@ -39,7 +39,7 @@ async def on_message(message):
     if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
         or message.content.startswith("mornin") or message.content.startswith("Mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
         UserName = (str(message.author)).split("#")
-        await message.channel.send("Hello " + UserName[1])
+        await message.channel.send("Hello " + UserName[0])
         
     # Call them out for sleeping too much! 
     if (message.content.startswith("afternoon")):
@@ -47,7 +47,7 @@ async def on_message(message):
 
     if (message.content.startswith(".Me")):
         UserName = (str(message.author)).split("#")
-        watchParty.add_field(name = "Who is joining us?", value = UserName[1], inline = False)
+        watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
 
     if (message.content.startswith(".Partylist")):
         await message.channel.send(embed = watchParty)

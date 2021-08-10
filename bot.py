@@ -15,10 +15,9 @@ async def on_message(message):
     # Greet the user and show them their tasks for the day
     if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
         or message.content.startswith("mornin") or message.content.startswith("Mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
-        await message.channel.send("Hello Human ;)")
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-        await message.channel.send("Current Time =", current_time)
+        await message.channel.send("Hello Human ;)" + current_time)
         
     # Call them out for sleeping too much! 
     if (message.content.startswith("afternoon")):

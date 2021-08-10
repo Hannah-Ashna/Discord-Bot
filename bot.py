@@ -12,14 +12,15 @@ async def stay_awake():
     while not bot.is_closed():
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-
+        channel = bot.get_channel(820446444841730111)
         if (current_time > "21:25:00"):
             watchParty = discord.Embed(title = "Watch Party List:")
             watchParty.add_field(name = "aaaa", value = "aaaaa", inline = False)
-            bot.channels.cache.get("820446444841730111").send(embed = watchParty)
+            
+            await channel.send(embed = watchParty)
         
         else:
-            bot.channels.cache.get("820446444841730111").send("heehoo")
+            await channel.send("hee hoo")
         
         print('Im awake :)')
         await asyncio.sleep(1680) #runs every 28mins.

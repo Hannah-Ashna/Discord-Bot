@@ -13,7 +13,7 @@ async def stay_awake():
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
 
-        if (current_time == "21:20:00"):
+        if (current_time == "21:25:00"):
             watchParty = discord.Embed(title = "Watch Party List:")
             watchParty.add_field(name = "aaaa", value = "aaaaa", inline = False)
             channel = bot.get_channel('<#874748237616140338>')

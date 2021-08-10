@@ -22,7 +22,7 @@ async def stay_awake():
             await channel.send(embed = watchParty)
         
         else:
-            await channel.send("hee hoo")
+            await channel.send("hee hoo" + current_time)
         
         print('Im awake :)')
         await asyncio.sleep(1680) #runs every 28mins.

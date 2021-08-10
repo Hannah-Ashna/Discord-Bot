@@ -6,7 +6,7 @@ from datetime import datetime
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = discord.Client()
-
+watchParty = discord.Embed(title = "Watch Party List:")
 
 async def stay_awake():
     await bot.wait_until_ready()
@@ -20,15 +20,14 @@ async def stay_awake():
         channel = bot.get_channel(874759682839937024)
         
         if (current_time > start_time and current_time < end_time):
-            watchParty = discord.Embed(title = "Watch Party List:")
             watchParty.add_field(name = "List is currently empty", value = "Do /Me to join", inline = False)
             await channel.send(embed = watchParty)
         
         else:
-            print("It isn't time for the watch party question yet!")
+            await channel.send(embed = watchParty)
 
-    print('Im awake!')
-    await asyncio.sleep(1680) #runs every 28mins
+        print('Im awake!')
+        await asyncio.sleep(1680) #runs every 28mins
 
 
 @bot.event
@@ -46,6 +45,12 @@ async def on_message(message):
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
+    if (message.content.startswith("/me")):
+        UserName = (str(message.author)).split("#")
+        watchParty.add_field(name = "Who is joining us?", value = UserName[1], inline = False)
+
+    if (message.content.startswith("/partylist")):
+        await message.channel.send(embed = watchParty)
 
 
 async def on_ready():

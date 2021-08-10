@@ -20,7 +20,7 @@ async def stay_awake():
         channel = bot.get_channel(874759682839937024)
         
         if (current_time > start_time and current_time < end_time):
-            watchParty.add_field(name = "List is currently empty", value = "Do /Me to join", inline = False)
+            watchParty.add_field(name = "List is currently empty", value = "Do .Me to join", inline = False)
             await channel.send(embed = watchParty)
         
         else:
@@ -45,11 +45,11 @@ async def on_message(message):
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
-    if (message.content.startswith("/me")):
+    if (message.content.startswith(".Me")):
         UserName = (str(message.author)).split("#")
         watchParty.add_field(name = "Who is joining us?", value = UserName[1], inline = False)
 
-    if (message.content.startswith("/partylist")):
+    if (message.content.startswith(".Partylist")):
         await message.channel.send(embed = watchParty)
 
 

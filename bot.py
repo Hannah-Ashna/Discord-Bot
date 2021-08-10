@@ -1,4 +1,5 @@
 # Work with Python 3.6
+from asyncio.windows_events import NULL
 import discord
 import os
 import asyncio
@@ -7,6 +8,7 @@ from datetime import datetime
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = discord.Client()
 watchParty = discord.Embed(title = "Watch Party List:")
+watchList = "Joining us tonight:"
 
 async def stay_awake():
     await bot.wait_until_ready()
@@ -15,14 +17,19 @@ async def stay_awake():
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
         start_time = "13:00:00"
-        end_time = "21:30:00"
+        end_time = "14:00:00"
 
         channel = bot.get_channel(874759682839937024)
         
+        # Setup the watchParty list
         if (current_time > start_time and current_time < end_time):
-            watchParty.add_field(name = "List is currently empty", value = "Do .Me to join", inline = False)
-            await channel.send(embed = watchParty)
+            await channel.send("Current watch party list is empty!\nDo .Me to join...")
         
+        # Reset the watchParty list for the next day
+        elif (current_time < start_time):
+            watchParty = NULL
+            watchParty = discord.Embed(title = "Watch Party List:")
+
         else:
             await channel.send(embed = watchParty)
 
@@ -47,6 +54,7 @@ async def on_message(message):
 
     if (message.content.startswith(".Me")):
         UserName = (str(message.author)).split("#")
+        # fix this ---> watchList = watchList + "\n" + UserName[0]
         watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
 
     if (message.content.startswith(".Partylist")):

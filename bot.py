@@ -6,26 +6,35 @@ from datetime import datetime
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = discord.Client()
+msg_bool = False
+watchParty = discord.Embed(title = "Watch Party List:")
 
 async def stay_awake():
     await bot.wait_until_ready()
     while not bot.is_closed():
+
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
         start_time = "13:00:00"
-        end_time = "22:30:00"
+        end_time = "21:30:00"
+
         channel = bot.get_channel(820446444841730111)
-        if (current_time > start_time and current_time < end_time):
-            watchParty = discord.Embed(title = "Watch Party List:")
-            watchParty.add_field(name = "aaaa", value = "aaaaa", inline = False)
-            
+        
+
+        if (current_time > start_time and current_time < end_time and msg_bool == False):
+            watchParty.add_field(name = "Who is joining us?", value = "NO ONE", inline = False)
+            msg_bool = True
             await channel.send(embed = watchParty)
         
-        else:
-            await channel.send("hee hoo" + current_time)
+        elif (current_time < start_time and current_time > end_time):
+            msg_bool = False
+            print("It isn't time for the watch party question yet!")
         
-        print('Im awake :)')
-        await asyncio.sleep(1680) #runs every 28mins.
+        else:
+            await channel.send(embed = watchParty)
+
+        print('Im awake!')
+        await asyncio.sleep(1680) #runs every 28mins
 
 
 @bot.event
@@ -37,11 +46,18 @@ async def on_message(message):
     if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
         or message.content.startswith("mornin") or message.content.startswith("Mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
         
-        await message.channel.send("Hello H0M0")
+        await message.channel.send("Hello nerd")
         
     # Call them out for sleeping too much! 
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
+
+    if (message.content.startswith("/me")):
+        UserName = (str(message.author)).split("#")
+        watchParty.add_field(name = "Who is joining us?", value = UserName[1], inline = False)
+
+    if (message.content.startswith("/partylist")):
+        await message.channel.send(embed = watchParty)
 
 async def on_ready():
     print('Logged in as: ',bot.user.name)

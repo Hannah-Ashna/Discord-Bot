@@ -17,17 +17,14 @@ async def stay_awake():
         start_time = "13:00:00"
         end_time = "21:30:00"
 
-        channel = bot.get_channel(820446444841730111)
+        channel = bot.get_channel(874759682839937024)
         
         if (current_time > start_time and current_time < end_time):
             watchParty.add_field(name = "Who is joining us?", value = "NO ONE", inline = False)
             await channel.send(embed = watchParty)
         
-        elif (current_time < start_time and current_time > end_time):
-            print("It isn't time for the watch party question yet!")
-        
         else:
-            await channel.send(embed = watchParty)
+            print("It isn't time for the watch party question yet!")
 
     print('Im awake!')
     await asyncio.sleep(1680) #runs every 28mins
@@ -48,11 +45,11 @@ async def on_message(message):
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
-    if (message.content.startswith("/me")):
+    if (message.content.startswith(".me")):
         UserName = (str(message.author)).split("#")
         watchParty.add_field(name = "Who is joining us?", value = UserName[1], inline = False)
 
-    if (message.content.startswith("/partylist")):
+    if (message.content.startswith(".partylist")):
         await message.channel.send(embed = watchParty)
 
 async def on_ready():

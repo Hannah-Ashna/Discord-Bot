@@ -12,8 +12,10 @@ async def stay_awake():
     while not bot.is_closed():
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
+        start_time = "13:00:00"
+        end_time = "20:30:00"
         channel = bot.get_channel(820446444841730111)
-        if (current_time > "21:25:00"):
+        if (current_time > start_time and current_time < end_time):
             watchParty = discord.Embed(title = "Watch Party List:")
             watchParty.add_field(name = "aaaa", value = "aaaaa", inline = False)
             

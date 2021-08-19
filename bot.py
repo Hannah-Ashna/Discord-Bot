@@ -1,5 +1,5 @@
 # Work with Python 3.6
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 import discord
 import os
 import asyncio

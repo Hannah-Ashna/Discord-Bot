@@ -29,8 +29,8 @@ async def stay_awake():
             watchParty = []
             watchParty = discord.Embed(title = "Watch Party List:")
 
-        #else:
-            #await channel.send(embed = watchParty)
+        else:
+            await channel.send(embed = watchParty)
 
         print('Im awake!')
         await asyncio.sleep(1680) #runs every 28mins
@@ -53,7 +53,8 @@ async def on_message(message):
 
     if (message.content.startswith(".Me")):
         UserName = (str(message.author)).split("#")
-        watchList =+ "\n" + UserName[0]
+        newMember = "\n" + UserName[0]
+        watchList =+ newMember
         watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
 
     if (message.content.startswith(".Partylist")):

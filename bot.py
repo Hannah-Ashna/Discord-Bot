@@ -27,7 +27,7 @@ async def stay_awake():
         
         # Reset the watchParty list for the next day
         elif (current_time < start_time):
-            watchParty = NULL
+            watchParty = []
             watchParty = discord.Embed(title = "Watch Party List:")
 
         else:
@@ -52,10 +52,10 @@ async def on_message(message):
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
-    if (message.content.startswith(".Me")):
-        UserName = (str(message.author)).split("#")
+    #if (message.content.startswith(".Me")):
+     #   UserName = (str(message.author)).split("#")
         # fix this ---> watchList = watchList + "\n" + UserName[0]
-        watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
+      #  watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
 
     if (message.content.startswith(".Partylist")):
         await message.channel.send(embed = watchParty)

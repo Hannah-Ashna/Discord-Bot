@@ -73,6 +73,10 @@ async def on_message(message):
             usersList += "- " + watchList[x] + "\n"
         await message.channel.send(usersList)
 
+    # Some other easter eggs
+    if (message.content.lower().startswith("danny")):
+       await message.channel.send("hee hoo")
+       
 async def on_ready():
     print('Logged in as: ',bot.user.name)
 

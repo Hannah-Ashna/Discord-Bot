@@ -7,8 +7,7 @@ from datetime import datetime
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = discord.Client()
 watchParty = discord.Embed(title = "Watch Party List:")
-watchList = "Joining us tonight:"
-
+watchList = []
 async def stay_awake():
     await bot.wait_until_ready()
     while not bot.is_closed():
@@ -45,20 +44,37 @@ async def on_message(message):
     if (message.content.startswith("Morning") or message.content.startswith("morning") or message.content.startswith("mrnin") 
         or message.content.startswith("mornin") or message.content.startswith("Mornin") or message.content.startswith("G'day") or message.content.startswith("g'day")):
         UserName = (str(message.author)).split("#")
-        await message.channel.send("Hello " + UserName[0])
+        await message.channel.send("**Hello** " + UserName[0])
         
     # Call them out for sleeping too much! 
     if (message.content.startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
+    # Add a server member to the watch party list
     if (message.content.startswith(".Me")):
         UserName = (str(message.author)).split("#")
-        newMember = "\n" + UserName[0]
-        watchList =+ newMember
-        watchParty.add_field(name = "Who is joining us?", value = UserName[0], inline = False)
+        if UserName[0] not in watchList:
+            watchList.append(UserName[0])
+            await message.channel.send("... Adding you to the **VIP** list")
+        else:
+            await message.channel.send("You're already on the list! Use `.Bail` to leave.")
 
+    # Remove a server member from the watch party list
+    if (message.content.startswith(".Bail")):
+        UserName = (str(message.author)).split("#")
+        if UserName[0] in watchList:
+            watchList.remove(UserName[0])
+            await message.channel.send("... damn, the **audacity**")
+        else:
+            await message.channel.send("You're not on the list! Use `.Me` to join.")
+
+    # Display current watch party list attendees
     if (message.content.startswith(".Partylist")):
-        await message.channel.send(embed = watchParty)
+        usersList = "**Joining us Tonight:**"
+        for x in range (0, len(watchList)):
+            usersList += watchList[x] + "\n"
+        await message.channel.send(usersList)
+
 
 
 async def on_ready():

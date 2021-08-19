@@ -1,5 +1,4 @@
 # Work with Python 3.6
-# from asyncio.windows_events import NULL
 import discord
 import os
 import asyncio
@@ -30,8 +29,8 @@ async def stay_awake():
             watchParty = []
             watchParty = discord.Embed(title = "Watch Party List:")
 
-        else:
-            await channel.send(embed = watchParty)
+        #else:
+            #await channel.send(embed = watchParty)
 
         print('Im awake!')
         await asyncio.sleep(1680) #runs every 28mins

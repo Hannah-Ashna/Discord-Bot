@@ -47,11 +47,11 @@ async def on_message(message):
         await message.channel.send("**Hello** " + UserName[0])
         
     # Call them out for sleeping too much! 
-    if (message.content.startswith("afternoon")):
+    if (message.content.startswith.lower("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
     # Add a server member to the watch party list
-    if (message.content.startswith(".Me")):
+    if (message.content.startswith.lower(".Me")):
         UserName = (str(message.author)).split("#")
         if UserName[0] not in watchList:
             watchList.append(UserName[0])
@@ -60,7 +60,7 @@ async def on_message(message):
             await message.channel.send("You're already on the list! Use `.Bail` to leave.")
 
     # Remove a server member from the watch party list
-    if (message.content.startswith(".Bail")):
+    if (message.content.startswith.lower(".Bail")):
         UserName = (str(message.author)).split("#")
         if UserName[0] in watchList:
             watchList.remove(UserName[0])
@@ -70,9 +70,9 @@ async def on_message(message):
 
     # Display current watch party list attendees
     if (message.content.startswith(".Partylist")):
-        usersList = "**Joining us Tonight:**"
+        usersList = "**Joining us Tonight:**\n"
         for x in range (0, len(watchList)):
-            usersList += watchList[x] + "\n"
+            usersList += "- " + watchList[x] + "\n"
         await message.channel.send(usersList)
 
 

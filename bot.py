@@ -42,8 +42,13 @@ async def on_message(message):
     if (message.content.lower().startswith("morning") or message.content.lower().startswith("mrnin") or 
         message.content.lower().startswith("mornin") or message.content.lower().startswith("g'day")):
         UserName = (str(message.author)).split("#")
-        await message.channel.send("**Hello** " + UserName[0])
         
+        if (UserName[0] == "Jad"):
+            await message.channel.send("**Hello** " + UserName[0] + ", send pet pics now :aaaa:")
+        
+        else:
+            await message.channel.send("**Hello** " + UserName[0])
+            
     # Call them out for sleeping too much! 
     if (message.content.lower().startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")

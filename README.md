@@ -1,9 +1,10 @@
 # Discord Bot - The Lil' Assistant [REWORK in PROGRESS]
-Created this bot as part of a running gag with a few friends over the lockdown period.  
-We would often greet each other every morning and go over our plans for the day. I decided to make us a bot that stores our to-do lists based on our discord **#Numbers**.
-The bot allows users to add tasks and remove tasks and completely re-do their current list. In addition to that, the bot also has some easter egg (inside joke-based) commands.
+Created this bot as part of a running gag with a few friends over the lockdown period. 
+This bot was originally a to-do list reminder bot but has now been reworked to fit our needs as a group on discord. The bot will now send a daily reminded to ask us if we're available for a watch party session in the evening; it gives us the option to add our name to the watch party list. Slightly before the call is scheduled to begin it will send us another reminder with the list of attending members for the evening.
 
-The bot is currently being hosted via an **AWS EC2 Instance** instead of on **Heroku**
+In addition to this primary function, the bot also has some easter egg (inside joke-based) commands.
+
+The bot was previously hosted on an **AWS EC2 Instance** however due to hosting costs I have managed to move it back to **Heroku**.
 
 ------------------------------------
 

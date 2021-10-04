@@ -14,7 +14,7 @@ Provides user with a list of tasks that the bot is able to do
 Syntax: `.help`
 
 **Join Daily Watchparty**  
-Adds your Discord username to the watchparty list. 
+Adds your Discord username to the watchparty list.    
 Syntax: `.join`
 
 **Leave Daily Watchparty**  
@@ -22,7 +22,7 @@ Removes your Discord username from the watchparty list.
 Syntax: `.bail`
 
 **Show Daily Watchparty Attendees List**  
-Displays a list of all members that want to join the daily watchparty.
+Displays a list of all members that want to join the daily watchparty.   
 Syntax: `.partylist`
 
 **Danny Bot says Hi**  

@@ -3,6 +3,7 @@ import discord
 import os
 import asyncio
 from datetime import datetime
+from imdb import IMDb
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL = os.getenv('CHANNEL_ID')
@@ -91,6 +92,15 @@ async def on_message(message):
             await message.channel.send("I mean he's probably free?")
         else:
             await message.channel.send("Jad's dead. F.")
+
+    # Movie doodad test
+    if (message.content.lower().startswith(".movdir")):
+        # get a movie
+        movie = ia.get_movie('0133093')
+        # print the names of the directors of the movie
+        print('Directors:')
+        for director in movie['directors']:
+            print(director['name'])
 
 async def on_ready():
     print('Logged in as: ',bot.user.name)

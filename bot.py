@@ -21,7 +21,7 @@ async def stay_awake():
         channel = bot.get_channel(CHANNEL)
         
         # Setup the watchParty list
-        if (now.hour > 19 and now.hour < 20 and watchList != NULL):
+        if (now.hour > 19 and now.hour < 20):
             await channel.send("Current watch party list is empty!\nDo .Join to join...")
 
         print('Im awake!')
@@ -74,7 +74,7 @@ async def on_message(message):
         await message.channel.send(usersList)
 
     # Danny easter egg
-    if (message.content.lower().contains("danny")):
+    if (message.content.lower().startswith("danny")):
        await message.channel.send("hee hoo")
 
     #Jad busy command

@@ -19,6 +19,7 @@ async def stay_awake():
         now = datetime.now()
 
         channel = bot.get_channel(CHANNEL)
+        await asyncio.sleep(10)
         
         # Setup the watchParty list
         if (True):

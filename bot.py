@@ -98,7 +98,7 @@ async def on_message(message):
     if (message.content.lower().startswith(".findmovie")):
         ia = IMDb()
         search = message.content.lower()[11::]
-        search.replace(' ', '_')
+        search = search.replace(' ', '_')
         movies = ia.get_keyword(search)
         print(len(movies))
         if(len(movies) == 0):

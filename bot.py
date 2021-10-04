@@ -16,16 +16,6 @@ async def stay_awake():
     await bot.wait_until_ready()
     while not bot.is_closed():
 
-        now = datetime.now()
-
-        channel = bot.get_channel(CHANNEL)
-        await asyncio.sleep(10)
-        
-        # Setup the watchParty list
-        if (True):
-            print("Sending reminder message")
-            await channel.send("Current watch party list is empty!\nDo .Join to join...")
-
         print('Im awake!')
         await asyncio.sleep(1680) #runs every 28mins
 

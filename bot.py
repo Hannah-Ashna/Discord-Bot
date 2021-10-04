@@ -22,6 +22,7 @@ async def stay_awake():
         
         # Setup the watchParty list
         if (now.hour >= 19 and now.hour <= 20):
+            print("Sending reminder message")
             await channel.send("Current watch party list is empty!\nDo .Join to join...")
 
         print('Im awake!')

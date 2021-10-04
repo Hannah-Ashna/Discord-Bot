@@ -1,3 +1,4 @@
 git+https://github.com/Rapptz/discord.py
 nest_asyncio
 datetime
+git+https://github.com/alberanid/imdbpy

@@ -104,7 +104,9 @@ async def on_message(message):
         else:
             # print the names of the directors of the movie
             print('Directors:')
-            for director in movies[0]['directors']:
+            print(movies[0])
+            movie = movies[0]
+            for director in movie['directors']:
                 await message.channel.send(director['name'])
 
 async def on_ready():

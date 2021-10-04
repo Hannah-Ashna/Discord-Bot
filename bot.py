@@ -100,7 +100,7 @@ async def on_message(message):
         search = message.content.lower()[11::]
         search = search.replace(' ', '-')
         movies = ia.get_keyword(search)
-        print("Number of Options: " + len(movies))
+        print("Number of Options: " + str(len(movies)))
         if(len(movies) == 0):
             await message.channel.send("No Movies Found")
         else:

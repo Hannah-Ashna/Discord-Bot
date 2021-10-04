@@ -103,7 +103,7 @@ async def on_message(message):
             await message.channel.send("No Movies Found")
         else:
             # print random movie from movies found
-            await message.channel.send(movies[randint(0, len(movies))])
+            await message.channel.send(movies[random.randint(0, len(movies))])
             
 
 async def on_ready():

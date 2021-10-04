@@ -17,19 +17,12 @@ async def stay_awake():
     while not bot.is_closed():
 
         now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        start_time = "13:00:00"
-        end_time = "14:00:00"
 
         channel = bot.get_channel(CHANNEL)
         
         # Setup the watchParty list
-        if (current_time > start_time and current_time < end_time):
+        if (now.hour > 19 and now.hour < 20 and watchList != NULL):
             await channel.send("Current watch party list is empty!\nDo .Join to join...")
-        
-        # Reset the watchParty list for the next day
-        elif (current_time < start_time):
-            watchList = []
 
         print('Im awake!')
         await asyncio.sleep(1680) #runs every 28mins
@@ -80,33 +73,35 @@ async def on_message(message):
             usersList += "- " + watchList[x] + "\n"
         await message.channel.send(usersList)
 
-    # Some other easter eggs
-    if (message.content.lower().startswith("danny")):
+    # Danny easter egg
+    if (message.content.lower().contains("danny")):
        await message.channel.send("hee hoo")
 
     #Jad busy command
     if (message.content.lower().startswith(".jadbusy?")):
         now = datetime.now()
-        if(now.hour > 9 & now.hour < 17 & (now.weekday() != 5 & now.weekday() != 6)):
+        
+        if (now.hour > 9 & now.hour < 17 & (now.weekday() != 5 & now.weekday() != 6)):
             await message.channel.send("He's probably at work but might still respond.")
-        elif(now.hour > 9 & now.hour < 23):
+        elif (now.hour > 9 & now.hour < 23):
             await message.channel.send("I mean he's probably free?")
         else:
             await message.channel.send("Jad's dead. F.")
 
-    # Find random movie
+    # Movie Suggestions
     if (message.content.lower().startswith(".findmovie")):
         ia = IMDb()
         search = message.content.lower()[11::]
         search = search.replace(' ', '-')
         movies = ia.get_keyword(search)
+        
         print("Number of Options: " + str(len(movies)))
-        if(len(movies) == 0):
+        
+        if (len(movies) == 0):
             await message.channel.send("No Movies Found")
         else:
-            # print random movie from movies found
-            movie = movies[random.randint(0, len(movies))]['title']
-            await message.channel.send("How about: " + movie)
+            # Pick a random movie and print it
+            await message.channel.send("**How about: **" + movies[random.randint(0, len(movies))]['title'])
             
 
 async def on_ready():

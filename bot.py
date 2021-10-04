@@ -85,7 +85,7 @@ async def on_message(message):
     #Jad busy command
     if (message.content.lower().startswith(".jadbusy?")):
         now = datetime.now()
-        if(now.hour > 9 & now.hour < 17 & (now.weekday != 5 & now.weekday != 6)):
+        if(now.hour > 9 & now.hour < 17 & (now.weekday() != 5 & now.weekday() != 6)):
             await message.channel.send("He's probably at work but might still respond.")
         elif(now.hour > 9 & now.hour < 23):
             await message.channel.send("I mean he's probably free?")

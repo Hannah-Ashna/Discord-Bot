@@ -93,14 +93,19 @@ async def on_message(message):
         else:
             await message.channel.send("Jad's dead. F.")
 
-    # Movie doodad test
+    # Movie director get
     if (message.content.lower().startswith(".movdir")):
+        movieName = message.content[7::]
+        ia = IMDb()
         # get a movie
-        movie = ia.get_movie('0133093')
-        # print the names of the directors of the movie
-        print('Directors:')
-        for director in movie['directors']:
-            print(director['name'])
+        movies = ia.search_movie(movieName)
+        if(len(movies) == 0):
+            await message.channel.send("No Movie Found")
+        else:
+            # print the names of the directors of the movie
+            print('Directors:')
+            for director in movies[0]['directors']:
+                await message.channel.send(director['name'])
 
 async def on_ready():
     print('Logged in as: ',bot.user.name)

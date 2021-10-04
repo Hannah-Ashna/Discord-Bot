@@ -21,7 +21,7 @@ async def stay_awake():
         channel = bot.get_channel(CHANNEL)
         
         # Setup the watchParty list
-        if (true):
+        if (True):
             print("Sending reminder message")
             await channel.send("Current watch party list is empty!\nDo .Join to join...")
 

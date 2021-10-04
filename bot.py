@@ -81,7 +81,17 @@ async def on_message(message):
     # Some other easter eggs
     if (message.content.lower().startswith("danny")):
        await message.channel.send("hee hoo")
-       
+
+    #Jad busy command
+    if (message.content.lower().startswith(".jadbusy?")):
+        now = datetime.now()
+        if(now.hour > 9 & now.hour < 17 & (now.weekday != 5 & now.weekday != 6)):
+            await message.channel.send("He's probably at work but might still respond.")
+        elif(now.hour > 9 & now.hour < 23):
+            await message.channel.send("I mean he's probably free?")
+        else:
+            await message.channel.send("Jad's dead. F.")
+
 async def on_ready():
     print('Logged in as: ',bot.user.name)
 

@@ -98,17 +98,15 @@ async def on_message(message):
     if (message.content.lower().startswith(".findmovie")):
         ia = IMDb()
         search = message.content.lower()[11::]
-        search = search.replace(' ', '_')
+        search = search.replace(' ', '-')
         movies = ia.get_keyword(search)
-        print(len(movies))
+        print("Number of Options: " + len(movies))
         if(len(movies) == 0):
             await message.channel.send("No Movies Found")
         else:
             # print random movie from movies found
             movie = movies[random.randint(0, len(movies))]['title']
-            print(movies)
-            print(movie)
-            await message.channel.send(movie)
+            await message.channel.send("How about: " + movie)
             
 
 async def on_ready():

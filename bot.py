@@ -99,7 +99,7 @@ async def on_message(message):
         ia = IMDb()
         search = message.content[11::]
         search.replace(' ', '_')
-        movies = ia.get_keyword()
+        movies = ia.get_keyword(search)
         print(len(movies))
         if(len(movies) == 0):
             await message.channel.send("No Movies Found")

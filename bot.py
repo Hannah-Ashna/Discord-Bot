@@ -2,6 +2,7 @@
 import discord
 import os
 import asyncio
+import random
 from datetime import datetime
 from imdb import IMDb
 
@@ -93,21 +94,17 @@ async def on_message(message):
         else:
             await message.channel.send("Jad's dead. F.")
 
-    # Movie director get
-    if (message.content.lower().startswith(".movdir")):
-        movieName = message.content[7::]
+    # Find random movie
+    if (message.content.lower().startswith(".findmovie")):
         ia = IMDb()
-        # get a movie
-        movies = ia.search_movie(movieName)
+        movies = ia.get_keyword(message.content[11::])
+        print(len(movies))
         if(len(movies) == 0):
-            await message.channel.send("No Movie Found")
+            await message.channel.send("No Movies Found")
         else:
-            # print the names of the directors of the movie
-            print('Directors:')
-            print(movies[0])
-            movie = movies[0]
-            for director in movie['directors']:
-                await message.channel.send(director['name'])
+            # print random movie from movies found
+            await message.channel.send(movies[randint(0, len(movies))])
+            
 
 async def on_ready():
     print('Logged in as: ',bot.user.name)

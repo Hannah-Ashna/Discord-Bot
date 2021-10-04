@@ -13,26 +13,20 @@ The bot was previously hosted on an **AWS EC2 Instance** however due to hosting 
 Provides user with a list of tasks that the bot is able to do  
 Syntax: `.help`
 
-**Create Task list**  
-Wipes any existing task list and starts fresh with a list of tasks.  
-Syntax: `.SetTask, Task1, Task2, ..., TaskN`
+**Join Daily Watchparty**  
+Adds your Discord username to the watchparty list. 
+Syntax: `.join`
 
-**Add Task(s)**  
-Appends the existing list of tasks to add new tasks.  
-Syntax: `.AddTask, Task1, Task2, ..., TaskN`
+**Leave Daily Watchparty**  
+Removes your Discord username from the watchparty list.   
+Syntax: `.bail`
 
-**Delete Task(s)**  
-Removes a task from the list based on its number in the list.  
-Syntax: `.DeleteTask, TaskNum1, TaskNum2, ..., TaskNumN`
+**Show Daily Watchparty Attendees List**  
+Displays a list of all members that want to join the daily watchparty.
+Syntax: `.partylist`
 
-**View Task(s)**  
+**Danny Bot says Hi**  
 Syntax: `Morning, morning, mornin, mrnin, G'day, g'day`
-
-**Show Band List**  
-Syntax: `.bands`
-
-**Add Bands to Band List**  
-Syntax: `.AddBand, Name1, Name2, ..., NameN`
 
 **Easter Egg**  
 Created for those days where we'd sleep in instead of waking up early.  

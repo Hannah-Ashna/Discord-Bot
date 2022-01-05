@@ -20,7 +20,8 @@ async def stay_awake():
         now = datetime.now()
 
         if ((now.hour == 12) or (now.hour == 23)):
-            await CHANNEL.send("Do your Duolingo!")
+            channel = bot.get_channel(CHANNEL)
+            await channel.send("Do your Duolingo!")
 
         await asyncio.sleep(1680) #runs every 28mins
 

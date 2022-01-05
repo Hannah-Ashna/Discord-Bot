@@ -8,6 +8,7 @@ from imdb import IMDb
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL = os.getenv('CHANNEL_ID')
+SERVER = os.getenv('SERVER_ID')
 
 bot = discord.Client()
 watchList = []
@@ -99,8 +100,10 @@ async def on_ready():
     now = datetime.now()
     print('Logged in as: ',bot.user.name, ' - ', now)
     if ((now.hour == 12) or (now.hour == 23)):
+        
         channel = bot.get_channel(CHANNEL)
-        await bot.send_message(channel, "Do your Duolingo!")
+        await channel.send("Do your Duolingo!")
 
 bot.loop.create_task(stay_awake())
 bot.run(TOKEN)
+

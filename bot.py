@@ -96,12 +96,11 @@ async def on_message(message):
             
 @bot.event
 async def on_ready():
-    print('Logged in as: ',bot.user.name)
     now = datetime.now()
-
+    print('Logged in as: ',bot.user.name, ' - ', now)
     if ((now.hour == 12) or (now.hour == 23)):
         channel = bot.get_channel(CHANNEL)
-        await channel.send("Do your Duolingo!")
+        await bot.send_message(channel, "Do your Duolingo!")
 
 bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

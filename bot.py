@@ -17,11 +17,6 @@ async def stay_awake():
     while not bot.is_closed():
 
         print('Im awake!')
-        now = datetime.now()
-
-        if ((now.hour == 12) or (now.hour == 23)):
-            channel = bot.get_channel(CHANNEL)
-            await channel.send("Do your Duolingo!")
 
         await asyncio.sleep(1680) #runs every 28mins
 
@@ -99,9 +94,14 @@ async def on_message(message):
             # Pick a random movie and print it
             await message.channel.send("**How about: **" + movies[random.randint(0, len(movies))]['title'])
             
-
+@bot.event
 async def on_ready():
     print('Logged in as: ',bot.user.name)
+    now = datetime.now()
+
+    if ((now.hour == 12) or (now.hour == 23)):
+        channel = bot.get_channel(CHANNEL)
+        await channel.send("Do your Duolingo!")
 
 bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

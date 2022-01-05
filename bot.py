@@ -25,8 +25,6 @@ async def stay_awake():
 
         await asyncio.sleep(1680) #runs every 28mins
 
-        
-
 
 @bot.event
 async def on_message(message):

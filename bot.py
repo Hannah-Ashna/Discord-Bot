@@ -17,7 +17,14 @@ async def stay_awake():
     while not bot.is_closed():
 
         print('Im awake!')
+        now = datetime.now()
+
+        if (now.hour == 13):
+            await CHANNEL.send("Do your Duolingo!")
+
         await asyncio.sleep(1680) #runs every 28mins
+
+        
 
 
 @bot.event
@@ -29,12 +36,8 @@ async def on_message(message):
     if (message.content.lower().startswith("morning") or message.content.lower().startswith("mrnin") or 
         message.content.lower().startswith("mornin") or message.content.lower().startswith("g'day")):
         UserName = (str(message.author)).split("#")
-        
-        if (UserName[0] == "Jad"):
-            await message.channel.send("**Hello** " + UserName[0] + ", send pet pics now :aaaa:")
-        
-        else:
-            await message.channel.send("**Hello** " + UserName[0])
+
+        await message.channel.send("**Hello** " + UserName[0])
             
     # Call them out for sleeping too much! 
     if (message.content.lower().startswith("afternoon")):
@@ -69,7 +72,7 @@ async def on_message(message):
     if (message.content.lower().startswith("danny")):
        await message.channel.send("hee hoo")
 
-    #Jad busy command
+    # Jad busy command
     if (message.content.lower().startswith(".jadbusy?")):
         now = datetime.now()
         

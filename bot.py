@@ -100,7 +100,7 @@ async def on_ready():
     print('Logged in as: ',bot.user.name, ' - ', now)
     if ((now.hour == 12) or (now.hour == 23)):
         
-        channel = bot.get_channel(CHANNEL)
+        channel = bot.get_channel(820446444841730111)
         await channel.send("Do your Duolingo!")
 
 bot.loop.create_task(stay_awake())

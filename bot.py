@@ -8,7 +8,6 @@ from imdb import IMDb
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL = os.getenv('CHANNEL_ID')
-SERVER = os.getenv('SERVER_ID')
 
 bot = discord.Client()
 watchList = []

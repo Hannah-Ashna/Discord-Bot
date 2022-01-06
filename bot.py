@@ -18,7 +18,7 @@ async def stay_awake():
         now = datetime.now()
         print('Im awake!')
 
-        if ((now.hour == 12) or (now.hour == 23)):
+        if (now.hour == 12):
         
             channel = bot.get_channel(int(CHANNEL))
             await channel.send("Do your **Duolingo**, nerds...")
@@ -75,9 +75,9 @@ async def on_message(message):
     if (message.content.lower().startswith(".jadbusy?")):
         now = datetime.now()
         
-        if (now.hour > 9 & now.hour < 17 & (now.weekday() != 5 & now.weekday() != 6)):
+        if (now.hour > 9 and now.hour < 17 and (now.weekday() != 5 and now.weekday() != 6)):
             await message.channel.send("He's probably at work but might still respond.")
-        elif (now.hour > 9 & now.hour < 23):
+        elif (now.hour > 9 and now.hour < 23):
             await message.channel.send("I mean he's probably free?")
         else:
             await message.channel.send("Jad's dead. F.")

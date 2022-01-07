@@ -37,6 +37,3 @@ Syntax: `afternoon`
 ### Creator's Notes:
 #### Using Heroku: 
 You'll need to manually create temporary task lists for each user in the 'Users' folder. It is definitely a less than ideal process, however, it appears when the bot runs on heroku without any existing files in that folder none of the commands work.
-
-#### Using AWS EC2 Instance:
-Using a process manager like [PM2](https://www.npmjs.com/package/pm2) will allow for the bot to be run 24/7 even when you've closed your connection to the instance. Using the instance instead of Heroku prevents loss of data due to Heroku's frequent 24-hour resets. However, ensure that you frequently check up on your instance and do the ocassional 'maintenance' shutdown and restart if necessary. The main downside being the free trial ends after a year, and I havent fully examined the cost of running the bare minimum just yet.

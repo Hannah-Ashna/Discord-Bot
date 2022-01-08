@@ -94,7 +94,7 @@ async def show_watch_party(ctx):
 )
 async def show_watch_party(ctx):    
     ia = IMDb()
-    search = ctx.content.lower()[7::]
+    search = ctx.content.lower()
     search = search.replace(' ', '-')
     movies = ia.get_keyword(search)     
 
@@ -126,6 +126,7 @@ async def on_message(message):
     if (message.content.lower().startswith("danny")):
        await message.channel.send("Hee Hoo! Howdy doo!")
     
+    # If nothing then process commands
     await bot.process_commands(message)
 
 @bot.event

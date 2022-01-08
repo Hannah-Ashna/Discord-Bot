@@ -15,7 +15,15 @@ CHANNEL = os.getenv('CHANNEL_ID')
 watchList = []
 
 # Discord Bot Setup Stuff
-bot = commands.Bot(command_prefix="!")
+help_command = commands.DefaultHelpCommand(
+    no_category = "Commands:"
+)
+
+bot = commands.Bot(
+    command_prefix = "!",
+    description = "A funky lil' assistant",
+    help_command = help_command  
+)
 
 # This is to keep the bot from falling asleep while hosted on Heroku.
 # Obviously this can be removed once we move to a private host
@@ -32,11 +40,6 @@ async def stay_awake():
             await channel.send("Do your **Duolingo**, nerds...")
 
         await asyncio.sleep(1680) #runs every 28mins
-
-# Gets rid of the no_category default string
-help_command = commands.DefaultHelpCommand(
-    no_category = "Commands:"
-)
 
 # Command: Figure out if Jad is busy or not
 @bot.command(

@@ -16,7 +16,7 @@ watchList = []
 
 # Discord Bot Setup Stuff
 help_command = commands.DefaultHelpCommand(
-    no_category = "Commands:"
+    no_category = "Commands"
 )
 
 bot = commands.Bot(

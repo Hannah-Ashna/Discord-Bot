@@ -94,7 +94,7 @@ async def show_watch_party(ctx):
 )
 async def show_watch_party(ctx, arg):    
     ia = IMDb()
-    search = arg.content.lower()
+    search = arg.lower()
     movies = ia.get_keyword(search)     
 
     print("Number of Options: " + str(len(movies)))

@@ -33,6 +33,10 @@ async def stay_awake():
 
         await asyncio.sleep(1680) #runs every 28mins
 
+# Gets rid of the no_category default string
+help_command = commands.DefaultHelpCommand(
+    no_category = "Commands:"
+)
 
 # Command: Figure out if Jad is busy or not
 @bot.command(

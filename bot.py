@@ -125,8 +125,9 @@ async def on_message(message):
     # Danny easter egg
     if (message.content.lower().startswith("danny")):
        await message.channel.send("Hee Hoo! Howdy doo!")
+    
+    await bot.process_commands(message)
 
-            
 @bot.event
 async def on_ready():
     now = datetime.now()

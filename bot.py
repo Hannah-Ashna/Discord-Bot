@@ -78,7 +78,7 @@ async def leave_watch_party(ctx):
 # Command: Show the list of members on the nightly watch party VIP list
 @bot.command(
     name = "list",
-    brief = "Use this to leave the watch party VIP list :("
+    brief = "Use this to display the watch party VIP list."
 )
 async def show_watch_party(ctx):
     usersList = "**Joining us Tonight:**\n"
@@ -92,10 +92,9 @@ async def show_watch_party(ctx):
     brief = "Use this to get a random movie recommendation based on genre.",
     help = "Structure it like this: !movie (genre here)"
 )
-async def show_watch_party(ctx):    
+async def show_watch_party(ctx, arg):    
     ia = IMDb()
-    search = ctx.content.lower()
-    search = search.replace(' ', '-')
+    search = arg.content.lower()
     movies = ia.get_keyword(search)     
 
     print("Number of Options: " + str(len(movies)))

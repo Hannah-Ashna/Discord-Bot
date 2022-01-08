@@ -54,13 +54,12 @@ async def jad_availability(ctx):
     brief = "Use this to join the watch party VIP list!"
 )
 async def join_watch_party(ctx):
-    if (ctx.content.lower().startswith(".join")):
-        UserName = (str(ctx.author)).split("#")
-        if UserName[0] not in watchList:
-            watchList.append(UserName[0])
-            await ctx.channel.send("... Adding you to the **VIP** list")
-        else:
-            await ctx.channel.send("You're already on the list! Use `.Bail` to leave.")
+    UserName = (str(ctx.author)).split("#")
+    if UserName[0] not in watchList:
+        watchList.append(UserName[0])
+        await ctx.channel.send("... Adding you to the **VIP** list")
+    else:
+        await ctx.channel.send("You're already on the list! Use `.Bail` to leave.")
 
 # Command: Leave the nightly watch party VIP list
 @bot.command(
@@ -68,20 +67,51 @@ async def join_watch_party(ctx):
     brief = "Use this to leave the watch party VIP list :("
 )
 async def leave_watch_party(ctx):
-    if (ctx.content.lower().startswith(".bail")):
-        UserName = (str(ctx.author)).split("#")
-        if UserName[0] in watchList:
-            watchList.remove(UserName[0])
-            await ctx.channel.send("... damn, the **audacity**")
-        else:
-            await ctx.channel.send("You're not on the list! Use `.Me` to join.")
+    UserName = (str(ctx.author)).split("#")
+    if UserName[0] in watchList:
+        watchList.remove(UserName[0])
+        await ctx.channel.send("... damn, the **audacity**")
+    else:
+        await ctx.channel.send("You're not on the list! Use `.Me` to join.")
+
+
+# Command: Show the list of members on the nightly watch party VIP list
+@bot.command(
+    name = "list",
+    brief = "Use this to leave the watch party VIP list :("
+)
+async def show_watch_party(ctx):
+    usersList = "**Joining us Tonight:**\n"
+    for x in range (0, len(watchList)):
+        usersList += "- " + watchList[x] + "\n"
+    await ctx.channel.send(usersList)
+
+# Command: Provide a random movie recommendation based on genre (IMDB)
+@bot.command(
+    name = "movie",
+    brief = "Use this to get a random movie recommendation based on genre.",
+    help = "Structure it like this: !movie (genre here)"
+)
+async def show_watch_party(ctx):    
+    ia = IMDb()
+    search = ctx.content.lower()[7::]
+    search = search.replace(' ', '-')
+    movies = ia.get_keyword(search)     
+
+    print("Number of Options: " + str(len(movies)))
+        
+    if (len(movies) == 0):
+        await ctx.channel.send("No Movies Found")
+    else:
+        # Pick a random movie and print it
+        await ctx.channel.send("**How about: **" + movies[random.randint(0, len(movies))]['title'])
 
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
 
-    # Greet the user and show them their tasks for the day
+    # Greet the user
     if (message.content.lower().startswith("morning") or message.content.lower().startswith("mrnin") or 
         message.content.lower().startswith("mornin") or message.content.lower().startswith("g'day")):
         UserName = (str(message.author)).split("#")
@@ -92,31 +122,10 @@ async def on_message(message):
     if (message.content.lower().startswith("afternoon")):
         await message.channel.send("Damn ... took you long enough...")
 
-    # Display current watch party list attendees
-    if (message.content.lower().startswith(".partylist")):
-        usersList = "**Joining us Tonight:**\n"
-        for x in range (0, len(watchList)):
-            usersList += "- " + watchList[x] + "\n"
-        await message.channel.send(usersList)
-
     # Danny easter egg
     if (message.content.lower().startswith("danny")):
-       await message.channel.send("hee hoo")
+       await message.channel.send("Hee Hoo! Howdy doo!")
 
-    # Movie Suggestions
-    if (message.content.lower().startswith(".findmovie")):
-        ia = IMDb()
-        search = message.content.lower()[11::]
-        search = search.replace(' ', '-')
-        movies = ia.get_keyword(search)
-        
-        print("Number of Options: " + str(len(movies)))
-        
-        if (len(movies) == 0):
-            await message.channel.send("No Movies Found")
-        else:
-            # Pick a random movie and print it
-            await message.channel.send("**How about: **" + movies[random.randint(0, len(movies))]['title'])
             
 @bot.event
 async def on_ready():

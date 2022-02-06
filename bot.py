@@ -34,7 +34,7 @@ async def stay_awake():
         now = datetime.now()
         print('Im awake!')
 
-        if (now.hour == 12 and now.minute < 30):
+        if (now.hour == 20 and now.minute < 29):
         
             channel = bot.get_channel(int(CHANNEL))
             await channel.send("Do your **Duolingo**, nerds...")

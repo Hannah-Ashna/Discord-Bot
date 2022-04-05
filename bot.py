@@ -140,6 +140,6 @@ async def on_ready():
     now = datetime.now()
     print('Logged in as: ',bot.user.name, ' - ', now)
 
-bot.loop.setup_hook(stay_awake())
+bot.loop.create_task(stay_awake())
 bot.run(TOKEN)
 

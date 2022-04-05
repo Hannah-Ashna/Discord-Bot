@@ -25,6 +25,22 @@ bot = commands.Bot(
     help_command = help_command  
 )
 
+# This is to keep the bot from falling asleep while hosted on Heroku.
+# Obviously this can be removed once we move to a private host
+# that won't time us out all the time ... 
+async def stay_awake():
+    await bot.wait_until_ready()
+    while not bot.is_closed():
+        now = datetime.now()
+        print('Im awake!')
+
+        if (now.hour == 20 and now.minute < 29):
+        
+            channel = bot.get_channel(int(CHANNEL))
+            await channel.send("Do your **Duolingo**, nerds...")
+
+        await asyncio.sleep(1680) #runs every 28mins
+
 # Command: Figure out if Jad is busy or not
 @bot.command(
     name = "jad",
@@ -123,22 +139,6 @@ async def on_message(message):
 async def on_ready():
     now = datetime.now()
     print('Logged in as: ',bot.user.name, ' - ', now)
-
-# This is to keep the bot from falling asleep while hosted on Heroku.
-# Obviously this can be removed once we move to a private host
-# that won't time us out all the time ... 
-async def stay_awake():
-    await bot.wait_until_ready()
-    while not bot.is_closed():
-        now = datetime.now()
-        print('Im awake!')
-
-        if (now.hour == 20 and now.minute < 29):
-        
-            channel = bot.get_channel(int(CHANNEL))
-            await channel.send("Do your **Duolingo**, nerds...")
-
-        await asyncio.sleep(1680) #runs every 28mins
 
 bot.loop.create_task(stay_awake())
 bot.run(TOKEN)

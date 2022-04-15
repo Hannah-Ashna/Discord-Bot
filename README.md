@@ -1,4 +1,4 @@
-# Discord Bot - The Lil' Assistant [REWORK in PROGRESS]
+# Discord Bot - The Lil' Assistant 
 Created this bot as part of a running gag with a few friends over the lockdown period. 
 This bot was originally a to-do list reminder bot but has now been reworked to fit our needs as a group on discord. The bot will now send a daily reminded to ask us if we're available for a watch party session in the evening; it gives us the option to add our name to the watch party list. Slightly before the call is scheduled to begin it will send us another reminder with the list of attending members for the evening.
 
